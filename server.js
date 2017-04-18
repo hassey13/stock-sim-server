@@ -7,11 +7,11 @@ var price = 24.54
 
 io.on('connection', function(socket){
   console.log('New User connected!')
-  io.emit('priceUpdate', price)
+  io.emit('priceUpdate', price.toFixed(2))
 })
 
 setInterval( () => {
-  price += (Math.random() - 0.30) 
+  price += (Math.random() - 0.45) / 8
   io.emit('priceUpdate', price.toFixed(2) )
 }, 2500)
 
