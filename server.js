@@ -3,16 +3,18 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
+var price = 24.54
+
 io.on('connection', function(socket){
-
-  socket.on('priceUpdate', function( price ){
-    console.log('Price requested!')
-
-    setTimeout( function() { console.log("I waited!")}, 5000)
-    io.emit('priceUpdate', price + 1)
-  })
-
+  console.log('New User connected!')
+  io.emit('priceUpdate', price)
 })
+
+setInterval( () => {
+  price += (Math.random() - 0.30) * 2
+  console.log('Price sent!')
+  io.emit('priceUpdate', price.toFixed(2) )
+}, 2500)
 
 // start the server
 const port = process.env.PORT || 4000;
