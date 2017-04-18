@@ -11,8 +11,7 @@ io.on('connection', function(socket){
 })
 
 setInterval( () => {
-  price += (Math.random() - 0.30) * 2
-  console.log('Price sent!')
+  price += (Math.random() - 0.30) 
   io.emit('priceUpdate', price.toFixed(2) )
 }, 2500)
 
